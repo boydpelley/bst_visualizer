@@ -16,17 +16,19 @@ void render_tree(SDL_Renderer *renderer, node *root, int x, int y, int spacing)
     }
 }
 
-void render_screen(SDL_Renderer *renderer)
+void render_screen(SDL_Renderer *renderer, node * root)
 {
     // Render a white screen
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
     SDL_RenderClear(renderer);
 
+    render_tree(renderer, root, 50, 50, 25);
+
     SDL_RenderPresent(renderer);
 }
 
-short process_events(SDL_Window *window)
+short process_events(SDL_Window *window, node **root)
 {
     SDL_Event event;
 
@@ -53,6 +55,12 @@ short process_events(SDL_Window *window)
                     case SDLK_ESCAPE:
                     {
                         done = 1;
+                        break;
+                    }
+                    case SDLK_i:
+                    {
+                        short key = rand() % 100 + 1;
+                        *root = insert(*root, key);
                         break;
                     }
                 }
@@ -89,12 +97,14 @@ int main(int argc, char * argv[])
 
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
+    node * root = NULL;
+
     short done = 0;
     while (!done)
     {
-        done = process_events(window);
+        done = process_events(window, &root);
 
-        render_screen(renderer);
+        render_screen(renderer, root);
     }
 
     return 0;

@@ -1,3 +1,10 @@
 # ninja log v5
 0	297	7289508240038378	CMakeFiles/bst_visualizer.dir/main.c.obj	643a04cd34116e53
 299	408	7289508241110713	bst_visualizer.exe	8ffc76ec5edf2671
+14	160	7290755589566744	CMakeFiles/bst_visualizer.dir/binary_search_tree.c.obj	be652be4a5162a32
+4	432	7290755592284833	CMakeFiles/bst_visualizer.dir/main.c.obj	643a04cd34116e53
+432	692	7290755594837757	bst_visualizer.exe	b2933b1733c22c1c
+3	315	7290757864437212	CMakeFiles/bst_visualizer.dir/main.c.obj	643a04cd34116e53
+316	431	7290757865534775	bst_visualizer.exe	b2933b1733c22c1c
+2	309	7290758293441492	CMakeFiles/bst_visualizer.dir/main.c.obj	643a04cd34116e53
+311	399	7290758294311793	bst_visualizer.exe	b2933b1733c22c1c
