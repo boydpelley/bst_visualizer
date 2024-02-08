@@ -1,6 +1,19 @@
 #include <stdio.h>
 #include "SDL2/SDL.h"
 #include "binary_search_tree.h"
+#include "ascii_digits.h"
+
+void render_digit(SDL_Renderer* renderer, short digit[], int x, int y) {
+    for (int i = 0; i < DIGIT_HEIGHT; ++i) {
+        for (int j = 0; j < DIGIT_WIDTH; ++j) {
+            if (digit[i * DIGIT_WIDTH + j] == 1) {
+                SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // Black color
+                SDL_Rect rect = {x + j, y + i, 1, 1};
+                SDL_RenderFillRect(renderer, &rect);
+            }
+        }
+    }
+}
 
 void render_tree(SDL_Renderer *renderer, node *root, int x, int y, int spacing)
 {

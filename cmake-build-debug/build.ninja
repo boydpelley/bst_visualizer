@@ -61,6 +61,12 @@ build CMakeFiles/bst_visualizer.dir/binary_search_tree.c.obj: C_COMPILER__bst_vi
   OBJECT_DIR = CMakeFiles\bst_visualizer.dir
   OBJECT_FILE_DIR = CMakeFiles\bst_visualizer.dir
 
+build CMakeFiles/bst_visualizer.dir/ascii_digits.c.obj: C_COMPILER__bst_visualizer_Debug C$:/Users/boydj/git/personal/bst_visualizer/ascii_digits.c || cmake_object_order_depends_target_bst_visualizer
+  DEP_FILE = CMakeFiles\bst_visualizer.dir\ascii_digits.c.obj.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles\bst_visualizer.dir
+  OBJECT_FILE_DIR = CMakeFiles\bst_visualizer.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target bst_visualizer
@@ -69,7 +75,7 @@ build CMakeFiles/bst_visualizer.dir/binary_search_tree.c.obj: C_COMPILER__bst_vi
 #############################################
 # Link the executable bst_visualizer.exe
 
-build bst_visualizer.exe: C_EXECUTABLE_LINKER__bst_visualizer_Debug CMakeFiles/bst_visualizer.dir/main.c.obj CMakeFiles/bst_visualizer.dir/binary_search_tree.c.obj | C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/mingw/lib/libSDL2main.a C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/mingw/lib/libSDL2.dll.a
+build bst_visualizer.exe: C_EXECUTABLE_LINKER__bst_visualizer_Debug CMakeFiles/bst_visualizer.dir/main.c.obj CMakeFiles/bst_visualizer.dir/binary_search_tree.c.obj CMakeFiles/bst_visualizer.dir/ascii_digits.c.obj | C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/mingw/lib/libSDL2main.a C$:/Program$ Files/JetBrains/CLion$ 2022.2.4/bin/mingw/lib/libSDL2.dll.a
   FLAGS = -g
   LINK_LIBRARIES = -lmingw32  -mwindows  "C:/Program Files/JetBrains/CLion 2022.2.4/bin/mingw/lib/libSDL2main.a"  "C:/Program Files/JetBrains/CLion 2022.2.4/bin/mingw/lib/libSDL2.dll.a"  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\bst_visualizer.dir

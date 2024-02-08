@@ -216,6 +216,12 @@ SDL2_INCLUDE_DIR:PATH=C:/Program Files/JetBrains/CLion 2022.2.4/bin/mingw/includ
 //Where the SDL2 Library can be found
 SDL2_LIBRARY:STRING=mingw32;-mwindows;C:/Program Files/JetBrains/CLion 2022.2.4/bin/mingw/lib/libSDL2main.a;C:/Program Files/JetBrains/CLion 2022.2.4/bin/mingw/lib/libSDL2.dll.a
 
+//Path to a file.
+SDL_TTF_INCLUDE_DIR:PATH=SDL_TTF_INCLUDE_DIR-NOTFOUND
+
+//Path to a library.
+SDL_TTF_LIBRARY:FILEPATH=SDL_TTF_LIBRARY-NOTFOUND
+
 //Value Computed by CMake
 bst_visualizer_BINARY_DIR:STATIC=C:/Users/boydj/git/personal/bst_visualizer/cmake-build-debug
 
@@ -372,5 +378,5 @@ CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 FIND_PACKAGE_MESSAGE_DETAILS_SDL2:INTERNAL=[mingw32;-mwindows;C:/Program Files/JetBrains/CLion 2022.2.4/bin/mingw/lib/libSDL2main.a;C:/Program Files/JetBrains/CLion 2022.2.4/bin/mingw/lib/libSDL2.dll.a][C:/Program Files/JetBrains/CLion 2022.2.4/bin/mingw/include/SDL2][v()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
-SDL2_LIBRARY_TEMP:INTERNAL=mingw32;-mwindows;C:/Program Files/JetBrains/CLion 2022.2.4/bin/mingw/lib/libSDL2main.a;mingw32;-mwindows;C:/Program Files/JetBrains/CLion 2022.2.4/bin/mingw/lib/libSDL2main.a;C:/Program Files/JetBrains/CLion 2022.2.4/bin/mingw/lib/libSDL2.dll.a
+SDL2_LIBRARY_TEMP:INTERNAL=mingw32;-mwindows;C:/Program Files/JetBrains/CLion 2022.2.4/bin/mingw/lib/libSDL2main.a;mingw32;-mwindows;C:/Program Files/JetBrains/CLion 2022.2.4/bin/mingw/lib/libSDL2main.a;mingw32;-mwindows;C:/Program Files/JetBrains/CLion 2022.2.4/bin/mingw/lib/libSDL2main.a;mingw32;-mwindows;C:/Program Files/JetBrains/CLion 2022.2.4/bin/mingw/lib/libSDL2main.a;mingw32;-mwindows;C:/Program Files/JetBrains/CLion 2022.2.4/bin/mingw/lib/libSDL2main.a;C:/Program Files/JetBrains/CLion 2022.2.4/bin/mingw/lib/libSDL2.dll.a
 
