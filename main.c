@@ -22,7 +22,7 @@ short* get_ordered_digits(short key, short num_digits)
     return current_digs;
 }
 
-void render_digit(SDL_Renderer *renderer, short digit[], int x, int y)
+void render_digit(SDL_Renderer *renderer, const short digit[], int x, int y)
 {
     short digit_height = DIGIT_HEIGHT;
     short digit_width = DIGIT_WIDTH;
