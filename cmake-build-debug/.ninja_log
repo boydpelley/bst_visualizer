@@ -8,3 +8,8 @@
 316	431	7290757865534775	bst_visualizer.exe	b2933b1733c22c1c
 2	309	7290758293441492	CMakeFiles/bst_visualizer.dir/main.c.obj	643a04cd34116e53
 311	399	7290758294311793	bst_visualizer.exe	b2933b1733c22c1c
+13	150	7291130322414529	CMakeFiles/bst_visualizer.dir/binary_search_tree.c.obj	be652be4a5162a32
+3	408	7291130325002725	CMakeFiles/bst_visualizer.dir/main.c.obj	643a04cd34116e53
+408	670	7291130327571045	bst_visualizer.exe	b2933b1733c22c1c
+3	353	7291131990822768	CMakeFiles/bst_visualizer.dir/main.c.obj	643a04cd34116e53
+353	465	7291131991915598	bst_visualizer.exe	b2933b1733c22c1c

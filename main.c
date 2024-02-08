@@ -8,7 +8,7 @@ void render_tree(SDL_Renderer *renderer, node *root, int x, int y, int spacing)
     {
         SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255);
 
-        SDL_Rect rect = {x, y, x + 30, y + 30};
+        SDL_Rect rect = {x, y, 30, 30};
         SDL_RenderFillRect(renderer, &rect);
 
         render_tree(renderer, root->left, x - spacing, y + 50, spacing / 2);
