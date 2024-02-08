@@ -14,5 +14,6 @@ typedef struct node
 node *new_node(short item);
 node *insert(node *new, short key);
 node *search(node *root, short key);
+node *delete(node *root, short key);
 
 #endif //BST_VISUALIZER_BINARY_SEARCH_TREE_H

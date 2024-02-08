@@ -34,4 +34,59 @@ node * search(node * root, short key)
     return NULL;
 }
 
+node * delete(node * root, short key)
+{
+    if (root == NULL) return root;
+
+    if (root->key < key)
+    {
+        delete(root->left, key);
+        return root;
+    }
+    else if (root->key > key)
+    {
+        delete(root->right, key);
+        return root;
+    }
+
+    if (root->left == NULL)
+    {
+        node * temp = root->right;
+        free(root);
+        return temp;
+    }
+    else if (root->right == NULL)
+    {
+        node * temp = root->left;
+        free(root);
+        return temp;
+    }
+    else
+    {
+        node * successor_parent = root;
+
+        node * successor = root->right;
+        while (successor->left != NULL)
+        {
+            successor_parent = successor;
+            successor = successor->left;
+        }
+
+        if (successor_parent != root)
+        {
+            successor_parent->left = successor->right;
+        }
+        else
+        {
+            successor_parent->right = successor->right;
+        }
+
+        root->key = successor->key;
+
+        free(successor);
+
+        return root;
+    }
+}
+
 
