@@ -3,16 +3,62 @@
 #include "binary_search_tree.h"
 #include "ascii_digits.h"
 
-void render_digit(SDL_Renderer* renderer, short digit[], int x, int y) {
-    for (int i = 0; i < DIGIT_HEIGHT; ++i) {
-        for (int j = 0; j < DIGIT_WIDTH; ++j) {
-            if (digit[i * DIGIT_WIDTH + j] == 1) {
-                SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // Black color
+short get_num_digits_in_node(short key)
+{
+    if (key < 10) return 1;
+    return 1 + get_num_digits_in_node(key / 10);
+}
+
+short* get_ordered_digits(short key, short num_digits)
+{
+    short* current_digs = (short*)malloc(num_digits * sizeof(short));
+
+    for (int i = num_digits - 1; i >= 0; i--)
+    {
+        current_digs[i] = key % 10;
+        key /= 10;
+    }
+
+    return current_digs;
+}
+
+void render_digit(SDL_Renderer *renderer, short digit[], int x, int y)
+{
+    short digit_height = DIGIT_HEIGHT;
+    short digit_width = DIGIT_WIDTH;
+    for (int i = 0; i < digit_height; i++)
+    {
+        for (int j = 0; j < digit_width; j++)
+        {
+            if (digit[i * digit_width + j] == 1)
+            {
+                SDL_SetRenderDrawColor(renderer, 10, 10, 10, 255);
                 SDL_Rect rect = {x + j, y + i, 1, 1};
                 SDL_RenderFillRect(renderer, &rect);
             }
         }
     }
+}
+
+void render_rect_with_digits(SDL_Renderer *renderer, node *root, int x, int y)
+{
+    short digit_width = DIGIT_WIDTH;
+    short num_digits = get_num_digits_in_node(root->key);
+
+    short min_width = num_digits * digit_width;
+
+    SDL_Rect rect = {x, y, min_width, 30};
+    SDL_RenderFillRect(renderer, &rect);
+
+    short * ordered_digits = get_ordered_digits(root->key, num_digits);
+
+    // Draw digits
+    for (int i = 0; i < num_digits; i++)
+    {
+        render_digit(renderer, digits[ordered_digits[i]], x + i * digit_width, y);
+    }
+
+    free(ordered_digits);
 }
 
 void render_tree(SDL_Renderer *renderer, node *root, int x, int y, int spacing)
@@ -21,8 +67,7 @@ void render_tree(SDL_Renderer *renderer, node *root, int x, int y, int spacing)
     {
         SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255);
 
-        SDL_Rect rect = {x, y, 30, 30};
-        SDL_RenderFillRect(renderer, &rect);
+        render_rect_with_digits(renderer, root, x, y);
 
         render_tree(renderer, root->left, x - spacing, y + 50, spacing / 2);
         render_tree(renderer, root->right, x + spacing, y + 50, spacing / 2);
