@@ -1,5 +1,20 @@
 #include <stdio.h>
 #include "SDL2/SDL.h"
+#include "binary_search_tree.h"
+
+void render_tree(SDL_Renderer *renderer, node *root, int x, int y, int spacing)
+{
+    if (root != NULL)
+    {
+        SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255);
+
+        SDL_Rect rect = {x, y, x + 30, y + 30};
+        SDL_RenderFillRect(renderer, &rect);
+
+        render_tree(renderer, root->left, x - spacing, y + 50, spacing / 2);
+        render_tree(renderer, root->right, x + spacing, y + 50, spacing / 2);
+    }
+}
 
 void render_screen(SDL_Renderer *renderer)
 {
