@@ -11,7 +11,7 @@ short get_num_digits_in_node(short key)
 
 short* get_ordered_digits(short key, short num_digits)
 {
-    short* current_digs = (short*)malloc(num_digits * sizeof(short));
+    short* current_digs = (short*)malloc((num_digits + 1) * sizeof(short));
 
     for (int i = num_digits - 1; i >= 0; i--)
     {
