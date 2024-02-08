@@ -23,9 +23,43 @@ void render_screen(SDL_Renderer *renderer, node * root)
 
     SDL_RenderClear(renderer);
 
-    render_tree(renderer, root, 50, 50, 25);
+    render_tree(renderer, root, 300, 50, 50);
 
     SDL_RenderPresent(renderer);
+}
+
+
+short get_user_input()
+{
+    SDL_Event event;
+    short user_input = 0;
+    int waiting_for_input = 1;
+
+    while (waiting_for_input)
+    {
+        while (SDL_PollEvent(&event))
+        {
+            switch (event.type)
+            {
+                case SDL_KEYDOWN:
+                    switch (event.key.keysym.sym)
+                    {
+                        case SDLK_RETURN:
+                            waiting_for_input = 0;
+                            break;
+                        default:
+                            if (event.key.keysym.sym >= SDLK_0 && event.key.keysym.sym <= SDLK_9)
+                            {
+                                user_input = user_input * 10 + (event.key.keysym.sym - SDLK_0);
+                            }
+                            break;
+                    }
+                break;
+            }
+        }
+    }
+
+    return user_input;
 }
 
 short process_events(SDL_Window *window, node **root)
@@ -57,9 +91,15 @@ short process_events(SDL_Window *window, node **root)
                         done = 1;
                         break;
                     }
-                    case SDLK_i:
+                    case SDLK_r:
                     {
                         short key = rand() % 100 + 1;
+                        *root = insert(*root, key);
+                        break;
+                    }
+                    case SDLK_i:
+                    {
+                        short key = get_user_input();
                         *root = insert(*root, key);
                         break;
                     }
