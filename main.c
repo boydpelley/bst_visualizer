@@ -1,36 +1,39 @@
-#include <stdio.h>
 #include "SDL2/SDL.h"
 #include "binary_search_tree.h"
 #include "ascii_digits.h"
 
-short get_num_digits_in_node(short key)
+int get_num_digits_in_node(int key)
 {
-    if (key < 10) return 1;
-    return 1 + get_num_digits_in_node(key / 10);
+    int num_digits = 1;
+
+    while (key >= 10)
+    {
+        key /= 10;
+        num_digits++;
+    }
+    return num_digits;
 }
 
-short* get_ordered_digits(short key, short num_digits)
+int* get_ordered_digits(int key, int num_digits)
 {
-    short* current_digs = (short*)malloc((num_digits + 1) * sizeof(short));
+    int* current_digs = (int*)malloc((num_digits + 1) * sizeof(int));
 
     for (int i = num_digits - 1; i >= 0; i--)
     {
-        current_digs[i] = key % 10;
+        current_digs[i] = (int)(key % 10);
         key /= 10;
     }
 
     return current_digs;
 }
 
-void render_digit(SDL_Renderer *renderer, const short digit[], int x, int y)
+void render_digit(SDL_Renderer *renderer, const int digit[], int x, int y)
 {
-    short digit_height = DIGIT_HEIGHT;
-    short digit_width = DIGIT_WIDTH;
-    for (int i = 0; i < digit_height; i++)
+    for (int i = 0; i < DIGIT_HEIGHT; i++)
     {
-        for (int j = 0; j < digit_width; j++)
+        for (int j = 0; j < DIGIT_WIDTH; j++)
         {
-            if (digit[i * digit_width + j] == 1)
+            if (digit[i * DIGIT_WIDTH + j] == 1)
             {
                 SDL_SetRenderDrawColor(renderer, 10, 10, 10, 255);
                 SDL_Rect rect = {x + j, y + i, 1, 1};
@@ -42,15 +45,15 @@ void render_digit(SDL_Renderer *renderer, const short digit[], int x, int y)
 
 void render_rect_with_digits(SDL_Renderer *renderer, node *root, int x, int y)
 {
-    short digit_width = DIGIT_WIDTH;
-    short num_digits = get_num_digits_in_node(root->key);
+    int digit_width = DIGIT_WIDTH;
+    int num_digits = get_num_digits_in_node(root->key);
 
-    short min_width = num_digits * digit_width;
+    int min_width = (int)(num_digits * digit_width);
 
     SDL_Rect rect = {x, y, min_width, 30};
     SDL_RenderFillRect(renderer, &rect);
 
-    short * ordered_digits = get_ordered_digits(root->key, num_digits);
+    int * ordered_digits = get_ordered_digits(root->key, num_digits);
 
     // Draw digits
     for (int i = 0; i < num_digits; i++)
@@ -87,10 +90,10 @@ void render_screen(SDL_Renderer *renderer, node * root)
 }
 
 
-short get_user_input()
+int get_user_input()
 {
     SDL_Event event;
-    short user_input = 0;
+    int user_input = 0;
     int waiting_for_input = 1;
 
     while (waiting_for_input)
@@ -108,7 +111,7 @@ short get_user_input()
                         default:
                             if (event.key.keysym.sym >= SDLK_0 && event.key.keysym.sym <= SDLK_9)
                             {
-                                user_input = user_input * 10 + (event.key.keysym.sym - SDLK_0);
+                                user_input = (int)(user_input * 10 + (event.key.keysym.sym - SDLK_0));
                             }
                             break;
                     }
@@ -120,11 +123,11 @@ short get_user_input()
     return user_input;
 }
 
-short process_events(SDL_Window *window, node **root)
+int process_events(SDL_Window *window, node **root)
 {
     SDL_Event event;
 
-    short done = 0;
+    int done = 0;
 
     while (SDL_PollEvent(&event))
     {
@@ -151,13 +154,13 @@ short process_events(SDL_Window *window, node **root)
                     }
                     case SDLK_r:
                     {
-                        short key = rand() % 100 + 1;
+                        int key = (int)(rand() % 100 + 1);
                         *root = insert(*root, key);
                         break;
                     }
                     case SDLK_i:
                     {
-                        short key = get_user_input();
+                        int key = get_user_input();
                         *root = insert(*root, key);
                         break;
                     }
@@ -197,7 +200,7 @@ int main(int argc, char * argv[])
 
     node * root = NULL;
 
-    short done = 0;
+    int done = 0;
     while (!done)
     {
         done = process_events(window, &root);

@@ -5,11 +5,11 @@
 #ifndef BST_VISUALIZER_ASCII_DIGITS_H
 #define BST_VISUALIZER_ASCII_DIGITS_H
 
-#define DIGIT_HEIGHT 12;
-#define DIGIT_WIDTH 10;
+#define DIGIT_HEIGHT 12
+#define DIGIT_WIDTH 10
 
 
-short digits[][120] =
+int digits[][120] =
         {
                 {
                         0,0,0,1,1,1,1,0,0,0,
