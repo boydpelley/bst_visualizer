@@ -83,14 +83,7 @@ node * delete(node * root, int key)
         }
 
         // Delete the successor
-        if (successor_parent != root)
-        {
-            successor_parent->left = successor->right;
-        }
-        else
-        {
-            successor_parent->right = successor->right;
-        }
+        successor_parent->right = successor->right;
 
         root->key = successor->key;
 

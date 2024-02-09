@@ -37,3 +37,5 @@
 6	71	7292099717674169	CMakeFiles/bst_visualizer.dir/binary_search_tree.c.obj	be652be4a5162a32
 2	311	7292099720066867	CMakeFiles/bst_visualizer.dir/main.c.obj	643a04cd34116e53
 312	409	7292099721020887	bst_visualizer.exe	b2933b1733c22c1c
+2	308	7292100166898162	CMakeFiles/bst_visualizer.dir/main.c.obj	643a04cd34116e53
+308	392	7292100167707866	bst_visualizer.exe	b2933b1733c22c1c
