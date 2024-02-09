@@ -84,7 +84,7 @@ void render_screen(SDL_Renderer *renderer, node * root)
 
     SDL_RenderClear(renderer);
 
-    render_tree(renderer, root, 300, 50, 50);
+    render_tree(renderer, root, 300, 50, 100);
 
     SDL_RenderPresent(renderer);
 }
