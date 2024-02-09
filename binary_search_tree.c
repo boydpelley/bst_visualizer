@@ -6,7 +6,7 @@
 #include <malloc.h>
 #include "binary_search_tree.h"
 
-node * new_node(short item)
+node * new_node(int item)
 {
     struct node * temp = (struct node *)malloc(sizeof(struct node *));
     temp->key = item;
@@ -15,7 +15,7 @@ node * new_node(short item)
     return temp;
 }
 
-node * insert(node * new, short key)
+node * insert(node * new, int key)
 {
     // Base case
     if (new == NULL) return new_node(key);
@@ -27,7 +27,7 @@ node * insert(node * new, short key)
     return new;
 }
 
-node * search(node * root, short key)
+node * search(node * root, int key)
 {
     // Base cases
     if (root == NULL || root->key == key) return root;
@@ -39,7 +39,7 @@ node * search(node * root, short key)
     return NULL;
 }
 
-node * delete(node * root, short key)
+node * delete(node * root, int key)
 {
     // Base case
     if (root == NULL) return root;

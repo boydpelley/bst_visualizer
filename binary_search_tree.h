@@ -7,13 +7,13 @@
 
 typedef struct node
 {
-    short key;
+    int key;
     struct node *left, *right;
 } node;
 
-node *new_node(short item);
-node *insert(node *new, short key);
-node *search(node *root, short key);
-node *delete(node *root, short key);
+node *new_node(int item);
+node *insert(node *new, int key);
+node *search(node *root, int key);
+node *delete(node *root, int key);
 
 #endif //BST_VISUALIZER_BINARY_SEARCH_TREE_H
