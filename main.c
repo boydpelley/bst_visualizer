@@ -64,16 +64,27 @@ void render_rect_with_digits(SDL_Renderer *renderer, node *root, int x, int y)
     free(ordered_digits);
 }
 
-void render_tree(SDL_Renderer *renderer, node *root, int x, int y, int spacing)
+void render_line(SDL_Renderer * renderer, int x1, int y1, int x2, int y2)
+{
+    SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255);
+    SDL_RenderDrawLine(renderer, x1, y1, x2, y2);
+}
+
+void render_tree(SDL_Renderer *renderer, node *root, int x, int y, int spacing, int parent_x, int parent_y)
 {
     if (root != NULL)
     {
         SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255);
 
+        if (parent_x != -1 && parent_y != -1)
+        {
+            render_line(renderer, x , y, parent_x, parent_y);
+        }
+
         render_rect_with_digits(renderer, root, x, y);
 
-        render_tree(renderer, root->left, x - spacing, y + 50, spacing / 2);
-        render_tree(renderer, root->right, x + spacing, y + 50, spacing / 2);
+        render_tree(renderer, root->left, x - spacing, y + 50, spacing / 2, x, y);
+        render_tree(renderer, root->right, x + spacing, y + 50, spacing / 2, x, y);
     }
 }
 
@@ -84,7 +95,7 @@ void render_screen(SDL_Renderer *renderer, node * root)
 
     SDL_RenderClear(renderer);
 
-    render_tree(renderer, root, 300, 50, 100);
+    render_tree(renderer, root, 300, 50, 100, -1, -1);
 
     SDL_RenderPresent(renderer);
 }
