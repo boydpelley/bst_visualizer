@@ -88,6 +88,33 @@ void render_tree(SDL_Renderer *renderer, node *root, int x, int y, int spacing, 
     }
 }
 
+void visualize_search(SDL_Renderer *renderer, node *root, int target_key, int x, int y, int spacing, int parent_x, int parent_y)
+{
+    if (root != NULL)
+    {
+        SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255);
+
+        if (parent_x != -1 && parent_y != -1)
+        {
+            render_line(renderer, x, y, parent_x, parent_y);
+        }
+
+
+        if (root->key == target_key)
+        {
+            int num_digits = get_num_digits_in_node(root->key);
+            SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+            SDL_Rect highlight_rect = {x, y, num_digits * DIGIT_WIDTH, 30};
+            SDL_RenderFillRect(renderer, &highlight_rect);
+        }
+
+        render_rect_with_digits(renderer, root, x, y);
+
+        visualize_search(renderer, root->left, target_key, x - spacing, y + 50, spacing / 2, x, y);
+        visualize_search(renderer, root->right, target_key, x + spacing, y + 50, spacing / 2, x, y);
+    }
+}
+
 void render_screen(SDL_Renderer *renderer, node * root)
 {
     // Render a white screen
@@ -134,7 +161,7 @@ int get_user_input()
     return user_input;
 }
 
-int process_events(SDL_Window *window, node **root)
+int process_events(SDL_Renderer *renderer, SDL_Window *window, node **root)
 {
     SDL_Event event;
 
@@ -173,6 +200,12 @@ int process_events(SDL_Window *window, node **root)
                     {
                         int key = get_user_input();
                         *root = insert(*root, key);
+                        break;
+                    }
+                    case SDLK_s:
+                    {
+                        int key = get_user_input();
+                        visualize_search(renderer, *root, key, 300, 50, 100, -1, -1);
                         break;
                     }
                 }
@@ -214,7 +247,7 @@ int main(int argc, char * argv[])
     int done = 0;
     while (!done)
     {
-        done = process_events(window, &root);
+        done = process_events(renderer, window, &root);
 
         render_screen(renderer, root);
     }
