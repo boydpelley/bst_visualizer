@@ -88,6 +88,9 @@ void render_tree(SDL_Renderer *renderer, node *root, int x, int y, int spacing, 
     }
 }
 
+int search_key = 0;
+int search_initiated = 0;
+
 void visualize_search(SDL_Renderer *renderer, node *root, int target_key, int x, int y, int spacing, int parent_x, int parent_y)
 {
     if (root != NULL)
@@ -122,7 +125,15 @@ void render_screen(SDL_Renderer *renderer, node * root)
 
     SDL_RenderClear(renderer);
 
-    render_tree(renderer, root, 300, 50, 100, -1, -1);
+    if (search_key != 0)
+    {
+        visualize_search(renderer, root, search_key, 300, 50, 100, -1, -1);
+        SDL_Delay(200);
+    }
+    else
+    {
+        render_tree(renderer, root, 300, 50, 100, -1, -1);
+    }
 
     SDL_RenderPresent(renderer);
 }
@@ -204,8 +215,8 @@ int process_events(SDL_Renderer *renderer, SDL_Window *window, node **root)
                     }
                     case SDLK_s:
                     {
-                        int key = get_user_input();
-                        visualize_search(renderer, *root, key, 300, 50, 100, -1, -1);
+                        search_key = get_user_input();
+                        search_initiated = 1;
                         break;
                     }
                 }
